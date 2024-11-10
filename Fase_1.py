@@ -18,10 +18,10 @@ ROJO = (255, 0, 0)
 # Carga de imágenes
 imagen_raton = pygame.image.load("imagenes/mouse.png")
 imagen_queso = pygame.image.load("imagenes/cheese.jpg")
-imagen_personaje = pygame.image.load("imagenes/zorroSolo.png")  # Asegúrate de tener una imagen llamada "character.png"
+imagen_zorro = pygame.image.load("imagenes/zorroSolo.png")
 imagen_raton = pygame.transform.scale(imagen_raton, (TAMANO_CELDA, TAMANO_CELDA))
 imagen_queso = pygame.transform.scale(imagen_queso, (TAMANO_CELDA, TAMANO_CELDA))
-imagen_personaje = pygame.transform.scale(imagen_personaje, (TAMANO_CELDA, TAMANO_CELDA))
+imagen_zorro = pygame.transform.scale(imagen_zorro, (TAMANO_CELDA, TAMANO_CELDA))
 
 # Laberinto y posiciones iniciales
 laberinto = [
@@ -36,7 +36,7 @@ laberinto = [
 ]
 pos_inicial_raton = [0, 0]
 pos_queso = [7, 7]
-pos_personaje = [4, 0]  # Posición inicial del personaje en la esquina inferior izquierda
+pos_zorro = [4, 0]  # Posición inicial del personaje en la esquina inferior izquierda
 pos_raton = pos_inicial_raton[:]
 
 # Estados del juego
@@ -63,9 +63,9 @@ def dibujar_texto(texto, tamano_fuente, color, x, y):
 
 # Función para reiniciar el juego
 def reiniciar_juego():
-    global pos_raton, pos_personaje, juego_activo, juego_ganado_raton, juego_ganado_zorro
+    global pos_raton, pos_zorro, juego_activo, juego_ganado_raton, juego_ganado_zorro
     pos_raton = pos_inicial_raton[:]
-    pos_personaje = [4, 0]  # Restablece el personaje a la esquina inferior izquierda
+    pos_zorro = [4, 0]  # Restablece el personaje a la esquina inferior izquierda
     juego_activo = True
     juego_ganado_raton = False
     juego_ganado_zorro = False
@@ -120,15 +120,16 @@ while ejecutando:
                     pygame.quit()
                     sys.exit()
             elif juego_activo:
-                # Movimiento del personaje
-                if evento.key == pygame.K_UP and pos_personaje[0] > 0 and laberinto[pos_personaje[0] - 1][pos_personaje[1]] == 0:
-                    pos_personaje[0] -= 1
-                elif evento.key == pygame.K_DOWN and pos_personaje[0] < len(laberinto) - 1 and laberinto[pos_personaje[0] + 1][pos_personaje[1]] == 0:
-                    pos_personaje[0] += 1
-                elif evento.key == pygame.K_LEFT and pos_personaje[1] > 0 and laberinto[pos_personaje[0]][pos_personaje[1] - 1] == 0:
-                    pos_personaje[1] -= 1
-                elif evento.key == pygame.K_RIGHT and pos_personaje[1] < len(laberinto[0]) - 1 and laberinto[pos_personaje[0]][pos_personaje[1] + 1] == 0:
-                    pos_personaje[1] += 1
+                # Movimiento del personaje zorro
+                if evento.key == pygame.K_UP and pos_zorro[0] > 0 and laberinto[pos_zorro[0] - 1][pos_zorro[1]] == 0:
+                    pos_zorro[0] -= 1
+                elif evento.key == pygame.K_DOWN and pos_zorro[0] < len(laberinto) - 1 and laberinto[pos_zorro[0] + 1][pos_zorro[1]] == 0:
+                    pos_zorro[0] += 1
+                elif evento.key == pygame.K_LEFT and pos_zorro[1] > 0 and laberinto[pos_zorro[0]][pos_zorro[1] - 1] == 0:
+                    pos_zorro[1] -= 1
+                elif evento.key == pygame.K_RIGHT and pos_zorro[1] < len(laberinto[0]) - 1 and laberinto[pos_zorro[0]][pos_zorro[1] + 1] == 0:
+                    pos_zorro[1] += 1
+                # Movimiento del personaje raton
                 elif evento.key == pygame.K_w and pos_raton[0] > 0 and laberinto[pos_raton[0] - 1][pos_raton[1]] == 0:
                     pos_raton[0] -= 1
                 elif evento.key == pygame.K_s and pos_raton[0] < len(laberinto) - 1 and laberinto[pos_raton[0] + 1][pos_raton[1]] == 0:
@@ -139,15 +140,14 @@ while ejecutando:
                     pos_raton[1] += 1
 
     if juego_activo:
-        # Dibuja el laberinto, ratón, queso y personaje
-        pantalla.fill(BLANCO)
+        # Dibuja el laberinto, ratón, queso y zorro
         dibujar_laberinto()
         pantalla.blit(imagen_raton, (pos_raton[1] * TAMANO_CELDA, pos_raton[0] * TAMANO_CELDA))
         pantalla.blit(imagen_queso, (pos_queso[1] * TAMANO_CELDA, pos_queso[0] * TAMANO_CELDA))
-        pantalla.blit(imagen_personaje, (pos_personaje[1] * TAMANO_CELDA, pos_personaje[0] * TAMANO_CELDA))
+        pantalla.blit(imagen_zorro, (pos_zorro[1] * TAMANO_CELDA, pos_zorro[0] * TAMANO_CELDA))
 
         # Verifica si el personaje alcanzó el queso
-        if pos_personaje == pos_raton:
+        if pos_zorro == pos_raton:
             juego_activo = False
             juego_ganado_zorro = True
         if pos_raton == pos_queso:
