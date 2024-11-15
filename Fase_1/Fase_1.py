@@ -16,9 +16,9 @@ VERDE = (0, 255, 0)
 ROJO = (255, 0, 0)
 
 # Carga de imágenes
-imagen_raton = pygame.image.load("imagenes/mouse.png")
-imagen_queso = pygame.image.load("imagenes/cheese.jpg")
-imagen_zorro = pygame.image.load("imagenes/zorroSolo.png")
+imagen_raton = pygame.image.load("../imagenes/mouse.png")
+imagen_queso = pygame.image.load("../imagenes/cheese.jpg")
+imagen_zorro = pygame.image.load("../imagenes/zorroSolo.png")
 imagen_raton = pygame.transform.scale(imagen_raton, (TAMANO_CELDA, TAMANO_CELDA))
 imagen_queso = pygame.transform.scale(imagen_queso, (TAMANO_CELDA, TAMANO_CELDA))
 imagen_zorro = pygame.transform.scale(imagen_zorro, (TAMANO_CELDA, TAMANO_CELDA))
@@ -31,8 +31,8 @@ laberinto = [
     [1, 0, 1, 0, 1, 0 , 1, 0 , 0],
     [0, 0, 0, 0, 0, 0 , 1, 1 , 1],
     [1, 0, 1, 0, 1, 0 , 0, 0 , 0],
-    [1, 0, 1, 0, 1, 0 , 1, 1 , 0],
-    [1, 0, 1, 0, 1, 0 , 1, 0 , 0]
+    [0, 0, 0, 0, 1, 0 , 1, 1 , 0],
+    [0, 1, 1, 0, 1, 0 , 1, 0 , 0]
 ]
 pos_inicial_raton = [0, 0]
 pos_queso = [7, 7]
