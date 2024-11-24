@@ -11,7 +11,9 @@ def mostrar_valores_q(q_table, estado):
     else:
         print(f"Estado: {estado} aún no visitado.")
 
-
+def registrar_tiempo(tiempo):
+    with open("registroTiempo.txt", "a") as log:
+        log.write(f"Tiempo en encontrar el queso: {tiempo:.2f}\n")
 
 # Inicialización de Pygame y configuración básica
 pygame.init()
@@ -56,7 +58,7 @@ pos_raton = pos_inicial_raton[:]
 qlearning = Aprendizaje(laberinto, pos_queso)
 
 # Variables para el control de la velocidad del ratón
-intervalo_movimiento_raton = 60  # Número de fotogramas entre cada movimiento del ratón
+intervalo_movimiento_raton = 60  # Fotogramas raton
 contador_movimiento = 0  # Contador de fotogramas
 
 # Estados del juego
@@ -93,7 +95,7 @@ def menu_victoria_zorro():
 def menu_victoria_raton():
     pantalla.fill(BLANCO)
     dibujar_texto("¡Ganaste, te comiste el queso!", 25, AZUL, 50, 50)
-    dibujar_texto(f"Tiempo: {tiempo_transcurrido:.2f} segundos", 25, VERDE, 50, 100)  # Mostrar el tiempo
+    dibujar_texto(f"Tiempo: {tiempo_transcurrido:.2f} segundos", 25, VERDE, 50, 100)
     dibujar_texto("1. Reiniciar", 25, VERDE, 120, 150)
     dibujar_texto("2. Salir", 25, ROJO, 120, 200)
     pygame.display.flip()
@@ -163,8 +165,9 @@ while ejecutando:
 
         # Control de la velocidad del ratón
         contador_movimiento += 1
+        # En el bucle principal, donde llamas a entrenar:
         if contador_movimiento >= intervalo_movimiento_raton:
-            pos_raton = qlearning.entrenar(pos_raton)
+            pos_raton = qlearning.entrenar(pos_raton, pos_zorro)  # Pasar la posición del zorro
             mostrar_valores_q(qlearning.q_table, tuple(pos_raton))
             contador_movimiento = 0  # Reiniciar el contador
 
@@ -176,6 +179,7 @@ while ejecutando:
         # Verificar victorias
         if pos_raton == pos_queso:
             estado_juego = VICTORIA_RATON
+            registrar_tiempo(tiempo_transcurrido)
         elif pos_raton == pos_zorro:
             estado_juego = VICTORIA_ZORRO
 
