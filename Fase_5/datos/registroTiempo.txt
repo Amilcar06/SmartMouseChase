@@ -1,0 +1,30 @@
+PRUEBA 1
+Tiempo en encontrar el queso: 21.95
+Tiempo en encontrar el queso: 15.36
+Tiempo en encontrar el queso: 11.75
+Tiempo en encontrar el queso: 7.14
+Tiempo en encontrar el queso: 4.94
+PRUEBA 2
+Tiempo en encontrar el queso: 24.18
+Tiempo en encontrar el queso: 6.50
+Tiempo en encontrar el queso: 6.31
+PRUEBA 3
+Tiempo en encontrar el queso: 11.94
+Tiempo en encontrar el queso: 10.18
+Tiempo en encontrar el queso: 4.57
+Tiempo en encontrar el queso: 1.34
+PRUEBA 4
+Tiempo en encontrar el queso: 4.89
+Tiempo en encontrar el queso: 2.21
+Tiempo en encontrar el queso: 1.60
+Tiempo en encontrar el queso: 1.48
+Tiempo en encontrar el queso: 1.52
+
+PRUEBAS
+Tiempo en encontrar el queso: 5.54
+Tiempo en encontrar el queso: 8.05
+Tiempo en encontrar el queso: 4.82
+Tiempo en encontrar el queso: 11.73
+Tiempo en encontrar el queso: 7.14
+Tiempo en encontrar el queso: 2.78
+Tiempo en encontrar el queso: 2.00
